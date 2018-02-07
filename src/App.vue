@@ -14,8 +14,11 @@
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
+        <SearchBar></SearchBar>
       </v-container>
     </v-content>
+
+
     <v-footer color="indigo" app>
       <span class="white--text">&copy; 2018</span>
     </v-footer>
@@ -23,7 +26,12 @@
 </template>
 
 <script>
+  import SearchBar from './components/SearchBar'
   export default {
+
+    components:{
+      SearchBar
+    },
     data: () => ({
       drawer: null
     })
