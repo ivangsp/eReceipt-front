@@ -117,7 +117,14 @@
 </template>
 
 <script>
+  import SearchBar from './components/SearchBar';
+  import Receipt from './components/Receipts';
   export default {
+
+    components:{
+      SearchBar,
+      Receipt
+    },
     data: () => ({
       tags: [{
         title: 'Gas'
