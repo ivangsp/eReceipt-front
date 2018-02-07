@@ -7,7 +7,7 @@
           <v-card-text class="lighten-2">
             <v-layout row wrap class="receipt ">
 
-              <v-flex md2 >
+              <v-flex sm2 >
                 <v-btn @click.native.stop="dialog = true" class=" grey">
                   <div class="" >
                     <h1><sup>$</sup> 25 </h1>
@@ -16,7 +16,7 @@
                 </v-btn>
               </v-flex>
 
-              <v-flex md2>
+              <v-flex sm2>
                 <v-btn @click.native.stop="dialog = true" class=" grey">
                   <div class="" >
                     <h1><sup>$</sup> 25 </h1>
@@ -25,7 +25,7 @@
                 </v-btn>
               </v-flex>
 
-              <v-flex md2>
+              <v-flex sm2>
                 <v-btn @click.native.stop="dialog = true" class=" grey">
                   <div class="" >
                     <h1><sup>$</sup> 25 </h1>
@@ -34,7 +34,7 @@
                 </v-btn>
               </v-flex>
 
-              <v-flex md2>
+              <v-flex sm2>
                 <v-btn @click.native.stop="dialog = true" class=" grey">
                   <div class="" >
                     <h1><sup>$</sup> 25 </h1>
@@ -60,16 +60,16 @@
           <table class="table table-striped">
             <tbody>
             <tr>
-              <td scope="col-md-9">Mark</td>
-              <td scope="col-md-3">Otto</td>
+              <td scope="col-md-9">Banana</td>
+              <td scope="col-md-3">&euro; 2.0</td>
             </tr>
             <tr>
-              <td scope="col-md-9">Mark</td>
-              <td scope="col-md-3">Otto</td>
+              <td scope="col-md-9">choclate</td>
+              <td scope="col-md-3"> &euro;1.2</td>
             </tr>
             <tr>
-              <td scope="col-md-9">Mark</td>
-              <td scope="col-md-3">Otto</td>
+              <td scope="col-md-9">Chicken</td>
+              <td scope="col-md-3"> &euro; 4.0</td>
             </tr>
 
             </tbody>
