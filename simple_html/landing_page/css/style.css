@@ -1,0 +1,36 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.brand-logo{
+  position: relative;
+  top:-30px;
+  left: 0px;
+}
+
+#download-button{
+
+  background-color: #4891d9; 
+}
+
+body {
+  background: url("../back_gr.jpg");
+  background-size: 120%;
+  background-repeat: no-repeat;
+}
+
+#yleoba{
+
+  color: rgb(68, 123, 224);
+}
