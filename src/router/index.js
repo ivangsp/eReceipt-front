@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import Receipts from '@/components/Receipts'
 import Statistics from '@/components/Statistics'
-import LandingPage from '@/components/LandingPage'
 
 Vue.use(Router)
 
@@ -11,7 +10,6 @@ export default new Router({
   mode: 'history',
   routes: [
     { path: '/receipts', component: Receipts },
-    { path: '/statistics', component: Statistics },
-    { path: '/', component: LandingPage}
+    { path: '/statistics', component: Statistics }
   ]
 })

@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
       <v-flex md6 style="margin-bottom: 50px;">
         <v-select
           class="company-select"
@@ -114,11 +115,59 @@
         </v-expansion-panel>
       </v-flex>
 <!--     <v-expansion-panel expand>
+=======
+    <v-expansion-panel expand>
+>>>>>>> parent of ddd2aea... added landing page
       <v-expansion-panel-content v-for="item in receipts" :key="item.id" v-bind:value="item.id === 1">
         <div slot="header">{{item.date}}</div>
         <v-card>
           <v-card-text class="lighten-2">
             <v-layout row wrap class="receipt ">
+<<<<<<< HEAD
+=======
+
+              <v-flex sm2 >
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+              <v-flex sm2>
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+              <v-flex sm2>
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+              <v-flex sm2>
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+            </v-layout>
+          </v-card-text>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+>>>>>>> parent of ddd2aea... added landing page
 
               <v-flex sm2 >
                 <v-btn @click.native.stop="dialog = true" class=" grey">
@@ -186,13 +235,6 @@
             </tr>
 
             </tbody>
-
-            <tfoot>
-              <tr>
-                <td><b>Total</b></td>
-                <td> <b>&euro; 6.0</b></td>
-              </tr>
-            </tfoot>
           </table>
 
           <div class="row">
@@ -201,17 +243,24 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">Add tag</div>
                 </div>
-                <input type="text" v-model="newTag" class="form-control" id="inlineFormInputGroup" placeholder="eg fruits">
-                  <button class="btn btn-primary md-2" v-model="addedtags">Add</button>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="eg fruits">
+                  <button class="btn btn-primary md-2">Add</button>
               </div>
             </div>
 
           </div>
           <v-divider></v-divider>
 
-          <div class="row" >
+          <div class="row">
 
             <div class="col-auto">
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="autoSizingCheck1">
+                <label class="form-check-label" for="autoSizingCheck1">
+                  Fruits
+                </label>
+              </div>
+            </div><div class="col-auto">
               <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
                 <label class="form-check-label" for="autoSizingCheck2">
@@ -224,17 +273,6 @@
                 <input class="form-check-input" type="checkbox" id="autoSizingCheck">
                 <label class="form-check-label" for="autoSizingCheck">
                   Alchol
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row" >
-            <div class="col-auto" v-for="tag in tags">
-              <div class="form-check mb-2">
-                <input class="form-check-input" checked type="checkbox" id="autoSizingCheck1">
-                <label class="form-check-label" for="autoSizingCheck1">
-                  {{tag}}
                 </label>
               </div>
             </div>
@@ -255,12 +293,6 @@
     data () {
       return {
         dialog: false,
-
-        tags:[
-          'fruits', 'alcohol', 'food'
-        ],
-        newTag:'',
-
         receipts:[
           { id:   1,
             date: '08-feb-2018',
@@ -298,29 +330,6 @@
 
         ]
       }
-    },
-    computed:{
-        addedtags: function () {
-          console.log("newtag", this.newTag);
-          if(this.newTag.length !== 0){
-            console.log("dhdh", this.tags);
-           return  this.tags.push(this.newTag);
-
-          }
-
-
-        }
-    },
-
-    methods:{
-      // addTag(){
-      //   console.log("newtag", this.newTag);
-      //   if(this.newTag.length !== 0){
-      //     this.tags.push(this.newTag);
-      //     this.newTag ='';
-      //
-      //   }
-      // }
     }
 
   }
@@ -354,6 +363,7 @@
     .receipt-card {
       border: none;
 
+<<<<<<< HEAD
       .receipt {
         height: 150px;
         background-color: #d7d7d7;
@@ -383,6 +393,13 @@
         padding: 0 10px;
       }
     }
+=======
+  .receipt
+  .flex.md2 {
+    -ms-flex-preferred-size: 16.666666666666664%;
+    flex-basis: 16.666666666666664%;
+    max-width: 12.666666666666664%;
+>>>>>>> parent of ddd2aea... added landing page
   }
 
 </style>
