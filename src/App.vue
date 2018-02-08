@@ -19,9 +19,9 @@
           <div class="inline-heading">Filter search by:</div>
         </v-flex>
         <v-flex  md6>
-          <v-radio-group row>
-            <v-radio label="Price"></v-radio>
-            <v-radio label="Place"></v-radio>
+          <v-radio-group v-model="selectedSort" row>
+            <v-radio label="Price" value="price"></v-radio>
+            <v-radio label="Place" value="place"></v-radio>
           </v-radio-group>
         </v-flex>
         <v-flex md12>
@@ -35,8 +35,8 @@
             show-caps
             is-expanded
             :theme-styles='calendarStyles'
-            drag-color="#22b4fc"
-            select-color="#0092da"
+            drag-color="#aee4f3"
+            select-color="#00a6de"
             :month-labels='["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
             :weekday-labels='["MO", "TU", "WE", "TH", "FR", "SA", "SU"]'
           ></vc-date-picker>
@@ -59,8 +59,8 @@
               <v-list-tile v-for="tag in tags" :key="tag.title" @click="">
                 <v-list-tile-content>
                   <v-list-tile-title>
-                    <v-icon>chevron_right</v-icon>
-                    {{ tag.title }}
+                    <v-checkbox :label="tag.title" v-model="selectedTags" :value="tag.title"></v-checkbox>
+
                   </v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
@@ -83,7 +83,7 @@
         <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
       </v-toolbar-items>
       <div class="align-center" style="margin-left: auto">
-        <div class="hello-user">Hello, Ucha!</div>
+        <div class="hello-user">Hello, {{username}}!</div>
         <v-menu offset-y>
           <v-avatar size="50px" slot="activator">
             <img src="./assets/icon.svg">
@@ -107,7 +107,7 @@
 
     </v-toolbar>
     <v-content class="white">
-      <v-container fluid>
+      <v-container fluid style="padding: 50px;">
         <v-slide-x-transition mode="out-in">
           <router-view>
 
@@ -119,8 +119,9 @@
 </template>
 
 <script>
-  import SearchBar from './components/SearchBar';
-  import Receipt from './components/Receipts';
+  import axios from 'axios'
+  import SearchBar from './components/SearchBar'
+  import Receipt from './components/Receipts'
   export default {
 
     components:{
@@ -128,6 +129,7 @@
       Receipt
     },
     data: () => ({
+      username: 'Ucha',
       tags: [{
         title: 'Gas'
       }, {
@@ -135,6 +137,8 @@
       }, {
         title: 'Clothing'
       }],
+      selectedSort: 'price',
+      selectedTags: [],
       selectedDate: {
         start: new Date(2018, 0, 9),
         end: new Date(2018, 0, 18)
@@ -150,6 +154,13 @@
         },
       }
     }),
+    created () {
+      axios.get('https://id.ereceipt.website/api/whoami').then(response => {
+        this.username = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     methods: {
       logout: () => {
         console.log('loging out...')
@@ -175,14 +186,22 @@
     margin-left: auto;
 
     .menu-item {
-      width: 300px;
+      width: 200px;
+      border: none;
+      border-bottom: 5px solid rgba(255, 255, 255, 0);
       border-radius: 0px;
-      background-color: #c3c3c3;
+      background-color: rgba(255, 255, 255, 0);
+      color: #c1c1c1;
+
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
 
   .active-menu-item {
-    background-color: #0092da !important;
+    background-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(0, 124, 185, 1) !important;
   }
 
   .navigation-drawer {
