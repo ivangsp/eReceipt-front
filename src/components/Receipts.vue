@@ -92,7 +92,7 @@
               </v-flex>
               <v-flex md6>
                 <v-btn @click="sendToBusiness" block outline color="blue darken-2" class="white--text">
-                  Send to work account
+                  Send to accountant
                   <v-icon right dark>send</v-icon>
                 </v-btn>
               </v-flex>
@@ -208,7 +208,7 @@
       },
 
       sendToBusiness() {
-        this.$toasted.success('You have successfuly sent the receipt to your work account!', {
+        this.$toasted.success('You have successfuly sent the receipt to the accountant!', {
           theme: "primary", 
           position: "bottom-left", 
           duration : 2000

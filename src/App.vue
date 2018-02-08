@@ -206,7 +206,7 @@
         }
 
         params.start_time = this.selectedDate.start.toISOString()
-        params.end_time = this.selectedDate.end
+        params.end_time = new Date(this.selectedDate.end)
         params.end_time.setDate(params.end_time.getDate() + 1)
         params.end_time = params.end_time.toISOString()
 
