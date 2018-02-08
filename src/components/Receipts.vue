@@ -164,22 +164,25 @@
     },
 
     mounted(){
-      this.getallReceipts()
+      this.getReceipts({ client_id: -1 })
     },
 
     methods:{
-      getallReceipts() {
-        axios.get('https://id.ereceipt.website/api/receipt/?client_id=-1')
-          .then(response =>{
-            this.rawReceipts = response.data.map((el) => {
-              el.tags = el.tags.map((el) => (el.name))
-              return el
-            })
+      getReceipts(searchParams) {
+        axios.get('https://id.ereceipt.website/api/receipt', {
+          params: searchParams
+        })
+        .then(response =>{
+          this.rawReceipts = response.data.map((el) => {
+            el.tags = el.tags.map((el) => (el.name))
+            return el
           })
-          .catch(error =>{
-            console.log("error", error)
-          })
+        })
+        .catch(error =>{
+          console.log("error", error)
+        })
       },
+
       openReceipt: function(receipt) {
         this.dialog = true
         this.dialogReceipt = receipt

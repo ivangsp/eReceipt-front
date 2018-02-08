@@ -11,17 +11,19 @@
         <v-layout row wrap>
           <v-flex md12>
             <v-text-field
+              v-model='searchField'
               prepend-icon="search"
               label="Search"
+              @keyup.enter="filterReceipts"
             ></v-text-field>
           </v-flex>
-          <v-flex md6>
+          <v-flex md5>
             <div class="inline-heading">Filter search by:</div>
           </v-flex>
-          <v-flex  md6>
+          <v-flex  md7>
             <v-radio-group v-model="selectedSort" row>
-              <v-radio label="Price" value="price"></v-radio>
-              <v-radio label="Place" value="place"></v-radio>
+              <v-radio label="Product" value="product"></v-radio>
+              <v-radio label="Store" value="store"></v-radio>
             </v-radio-group>
           </v-flex>
           <v-flex md12>
@@ -128,14 +130,9 @@
     },
     data: () => ({
       username: 'Ucha',
-      tags: [{
-        title: 'Gas'
-      }, {
-        title: 'Food'
-      }, {
-        title: 'Clothing'
-      }],
-      selectedSort: 'price',
+      tags: [],
+      searchField: '',
+      selectedSort: 'product',
       selectedTags: [],
       selectedDate: {
         start: new Date(2018, 1, 2),
@@ -178,6 +175,31 @@
 
       logout(){
         console.log("logedout....")
+      },
+
+      filterReceipts () {
+        if (this.$route.path != "/") return;
+
+        var params = {client_id: -1}
+
+        if (this.searchField != '') {
+          if (this.selectedSort == 'product') {
+            params.item_search = this.searchField
+          } else if (this.selectedSort == 'store') {
+            params.store_search = this.searchField
+          }
+        }
+
+        if (this.selectedTags.length != 0) {
+          params.tags = JSON.stringify(this.selectedTags)
+        }
+
+        params.start_time = this.selectedDate.start.toISOString()
+        params.end_time = this.selectedDate.end
+        params.end_time.setDate(params.end_time.getDate() + 1)
+        params.end_time = params.end_time.toISOString()
+
+        this.$route.matched[0].instances.default.getReceipts(params)
       }
     },
 
