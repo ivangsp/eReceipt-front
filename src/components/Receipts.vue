@@ -10,13 +10,13 @@
         ></v-select>
       </v-flex>
       <v-flex md12>
-        <v-expansion-panel class="receipts-panel" v-for="(rs, day) in receipts">
+        <v-expansion-panel class="receipts-panel" v-for="(rs, day) in receipts" :key='day'>
           <v-expansion-panel-content>
             <div slot="header">{{day | moment('DD.MM.YYYY') }}</div>
             <v-card class="receipt-card">
               <v-layout row wrap>
-                <v-flex md2 v-for="receipt in rs">
-                  <div class="receipt" @click="dialog = !dialog">
+                <v-flex md2 v-for="receipt in rs" :key='receipt.id'>
+                  <div class="receipt" @click="openReceipt(receipt)">
                     <div class="price">
                       {{receipt.total}}€
                     </div>
@@ -105,7 +105,7 @@
     data () {
       return {
         dialog: false,
-        receiptTags: ['bla'],
+        receiptTags: [],
         dialogReceipt: null,
         receipts: []
       }
@@ -151,6 +151,10 @@
 
           })
       },
+      openReceipt: function(receipt) {
+        this.dialog = true
+        this.dialogReceipt = receipt
+      } 
     }
 
   }
