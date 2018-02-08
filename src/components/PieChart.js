@@ -1,3 +1,4 @@
+
 import { Pie, mixins } from 'vue-chartjs'
 const { reactiveProp } = mixins
 

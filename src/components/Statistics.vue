@@ -1,14 +1,43 @@
 <template>
-  <v-layout row wrap>
-    <v-flex md4 sm12>
-      <line-chart :chart-data="monthlyChart"></line-chart>
+  <v-layout row wrap class="mt-5 statistics" >
+    <v-flex md2></v-flex>
+    <v-flex (md9|sm10) ml-5 pl-5>
+      <v-layout row wrap>
+        <v-flex md12 sm12 class="ml-3"  >
+          <p >Total Expences per quarter</p>
+          <v-divider ></v-divider>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap class="mt-3">
+        <v-flex md12 sm12>
+          <img src="../assets/chart1ereceipt.svg" id="chart1" alt="chart1">
+        </v-flex>
+      </v-layout>
+      <v-spacing></v-spacing>
+
+      <v-layout row wrap class="mt-5">
+        <v-flex md12 sm12 class="ml-3"  >
+          <p >Expences by category</p>
+          <v-divider ></v-divider>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap class="mt-3">
+        <v-flex md4 xsm12 >
+          <img src="../assets/chart2ereceipt.svg" class="piechart" alt="chart1">
+        </v-flex>
+
+        <v-flex md4 xsm12 >
+          <img src="../assets/chart3ereceipt.svg" class="piechart" alt="chart1">
+        </v-flex>
+
+        <v-flex md4 xsm12>
+          <img src="../assets/chart4ereceipt.svg" class="piechart" alt="chart1">
+        </v-flex>
+      </v-layout>
+
     </v-flex>
-    <v-flex md4 sm12>
-      <pie-chart :chart-data="shopsChart"></pie-chart>
-    </v-flex>
-    <v-flex md4 sm12>
-      <pie-chart :chart-data="monthlyChart"></pie-chart>
-    </v-flex>
+    <v-flex md1></v-flex>
+
   </v-layout>
 </template>
 
@@ -48,3 +77,21 @@
     }
   }
 </script>
+
+<style>
+  #chart1{
+    width: 100%;
+    height: auto;
+  }
+
+  .piechart{
+    height: 30%;
+    width: auto;
+  }
+
+  .statistics
+  p{
+    color: #595959;
+    font-size: 18px;
+  }
+</style>

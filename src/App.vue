@@ -39,7 +39,8 @@
               :theme-styles='calendarStyles'
               drag-color='#f6f58b'
               select-color='#f0e347'
-              :month-labels='["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
+              :month-labels='["January", "February", "March", "April", "May", "June", "July", "August",
+               "September", "October", "November", "December"]'
               :weekday-labels='["MO", "TU", "WE", "TH", "FR", "SA", "SU"]'
             ></vc-date-picker>
           </v-flex>
@@ -101,7 +102,8 @@
                 <v-list-tile-action>
                   <v-icon>power_settings_new</v-icon>
                 </v-list-tile-action>
-                <v-list-tile-title>Logout</v-list-tile-title>
+                <v-list-tile-title>
+                  <a href="../simple_html/landing_page/index.html"> Logout</a></v-list-tile-title>
               </v-list-tile>
             </v-list>
           </v-menu>
