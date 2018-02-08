@@ -153,7 +153,10 @@
     }),
 
     watch: {
-      selectedTags: function(tags) {
+      selectedTags: function() {
+        this.filterReceipts()
+      },
+      selectedDate: function() {
         this.filterReceipts()
       }
     },
