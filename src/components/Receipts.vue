@@ -25,7 +25,7 @@
                     </div>
                   </div>
                   <div class="tag">
-                    #food
+                    <template v-for="tag in receipt.tags">{{ "#" + tag }} </template>
                   </div>
                 </v-flex>
               </v-layout>
@@ -35,61 +35,51 @@
       </v-flex>
 
     <v-dialog v-model="dialog" max-width="600">
-      <div class="receipt-dialog">
+      <div v-if="dialogReceipt" class="receipt-dialog">
         <div class="dialog-logo">
           <img src="../assets/logo_black.svg" height="80px;">
         </div>
         <div class="dialog-header">
-          Maxima XX<br>
+          {{ dialogReceipt.store }}<br>
           Voru, 50410 Tartu, tel 8002 121
         </div>
         <div class="dialog-content">
           <v-container grid-list-md>
             <v-layout row wrap>
-              <v-flex xs6 class="cont-1 bord1 text-md-left">KOKKU:</v-flex>
-              <v-flex xs6 class="cont-1 bord1 text-md-right">5.34€</v-flex>
+              <v-flex xs6 class="cont-1 bord1 text-md-left">TOTAL:</v-flex>
+              <v-flex xs6 class="cont-1 bord1 text-md-right">{{ dialogReceipt.total }}€</v-flex>
 
-              <v-flex xs6 class="cont-2 text-md-left">Kassa:</v-flex>
-              <v-flex xs6 class="cont-2 text-md-right">46059</v-flex>
-              <v-flex xs6 class="cont-2 text-md-left">Kviitungi nr:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Receipt number:</v-flex>
               <v-flex xs6 class="cont-2 text-md-right">34966</v-flex>
-              <v-flex xs6 class="cont-2 text-md-left">Aeg:</v-flex>
-              <v-flex xs6 class="cont-2 text-md-right">01.01.2018</v-flex>
-              <v-flex xs6 class="cont-2 text-md-left">Teenindaja:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Date:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-right">{{ dialogReceipt.date | moment('DD.MM.YYYY') }}</v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Cashier:</v-flex>
               <v-flex xs6 class="cont-2 text-md-right">209</v-flex>
-              <v-flex xs6 class="cont-2 bord1 text-md-left">Kliendikaart:</v-flex>
-              <v-flex xs6 class="cont-2 bord1 text-md-right">Aitah Kaart (*****576)</v-flex>
-              <v-flex xs6 class="cont-2 bord2 text-md-left">Nimetus</v-flex>
-              <v-flex xs3 class="cont-2 bord2 text-md-right">Kogus</v-flex>
-              <v-flex xs3 class="cont-2 bord2 text-md-right">Summa</v-flex>
+              <v-flex xs6 class="cont-2 bord1 text-md-left">Client:</v-flex>
+              <v-flex xs6 class="cont-2 bord1 text-md-right">{{ dialogReceipt.client_id }}</v-flex>
+              <v-flex xs6 class="cont-2 bord2 text-md-left">Product</v-flex>
+              <v-flex xs3 class="cont-2 bord2 text-md-right">Amount</v-flex>
+              <v-flex xs3 class="cont-2 bord2 text-md-right">Price</v-flex>
 
-              <v-flex xs6 class="cont-3 text-md-left">Piim Farmi 1.5L</v-flex>
-              <v-flex xs3 class="cont-3 text-md-right">1</v-flex>
-              <v-flex xs3 class="cont-3 text-md-right">1.05€</v-flex>
-              <v-flex xs6 class="cont-3 text-md-left">Markmepaberid</v-flex>
-              <v-flex xs3 class="cont-3 text-md-right">10</v-flex>
-              <v-flex xs3 class="cont-3 text-md-right">1.75€</v-flex>
-              <v-flex xs6 class="cont-3 text-md-left">Kupsis sokolaadis</v-flex>
-              <v-flex xs3 class="cont-3 text-md-right">1</v-flex>
-              <v-flex xs3 class="cont-3 text-md-right">0.74€</v-flex>
-              <v-flex xs6 class="cont-3 bord1 text-md-left">Belgia vahvel</v-flex>
-              <v-flex xs3 class="cont-3 bord1 text-md-right">1</v-flex>
-              <v-flex xs3 class="cont-3 bord1 text-md-right">1.80€</v-flex>
-              <v-flex xs8 class="cont-3 text-md-left">Pangakaart (SWEDBANK *****87593):</v-flex>
-              <v-flex xs4 class="cont-3 text-md-right">5.24€</v-flex>
-              <v-flex xs8 class="cont-3 text-md-left">Boonusmakse:</v-flex>
-              <v-flex xs4 class="cont-3 text-md-right">0.10€</v-flex>
-              <v-flex xs8 class="cont-1 text-md-left">KOKKU:</v-flex>
-              <v-flex xs4 class="cont-1 text-md-right">0.10€</v-flex>
+              <template v-for="product in dialogReceipt.items">
+                <v-flex xs6 class="cont-3 text-md-left">{{ product.name }}</v-flex>
+                <v-flex xs3 class="cont-3 text-md-right">{{ product.amount }}</v-flex>
+                <v-flex xs3 class="cont-3 text-md-right">{{ product.price_per }}€</v-flex>
+              </template>
+
+              <v-flex xs8 class="cont-3 bord2 text-md-left">Debit Card (SWEDBANK *****87593):</v-flex>
+              <v-flex xs4 class="cont-3 bord2 text-md-right">{{ dialogReceipt.total }}€</v-flex>
+              <v-flex xs8 class="cont-1 text-md-left">TOTAL:</v-flex>
+              <v-flex xs4 class="cont-1 text-md-right">{{ dialogReceipt.total }}€</v-flex>
             </v-layout>
           </v-container>
         </div>
         <div class="dialog-footer">
-          Maxima Eesti OU, Peterburi tee 47, 11415, Tallinn, Eesti<br>
-          Reg.kood: 74927502, KMKR: EE840284502
+          {{ dialogReceipt.store }} Eesti OU, Peterburi tee 47, 11415, Tallinn, Eesti<br>
+          Reg.code: 74927502, KMKR: EE840284502
         </div>
         <div class="tags">
-          <input-tag placeholder="Add Tag" :tags="receiptTags"></input-tag>
+          <input-tag placeholder="Add Tag" :tags.sync="receiptTags"></input-tag>
         </div>
       </div>
     </v-dialog>
@@ -105,56 +95,99 @@
     data () {
       return {
         dialog: false,
-        receiptTags: [],
         dialogReceipt: null,
-        receipts: []
+        receiptTags: [],
+        rawReceipts: []
+      }
+    },
+    computed: {
+      receipts: function() {
+        const groupby = (arr, func) => {
+          return arr.reduce(function(groups, item) {
+            const val = func(item)
+            groups[val] = groups[val] || []
+            groups[val].push(item)
+            groups[val].sort((a, b) => {
+              return new Date(b.date) - new Date(a.date)
+            })
+
+            return groups
+          }, {})
+        }
+
+        return groupby(this.rawReceipts, (rec) => {
+          let date = new Date(rec.date)
+
+          date.setHours(0)
+          date.setMinutes(0)
+          date.setSeconds(0)
+          date.setMilliseconds(0)
+
+          return date
+        })
+      }
+    },
+    watch: {
+      receiptTags: function(newTags, oldTags) {
+        var tagToAdd = newTags.filter(e => !oldTags.find(a => e == a))
+        var tagToDelete = oldTags.filter(e => !newTags.find(a => e == a))
+        
+        tagToAdd.forEach((tag) => {
+          axios.post('https://id.ereceipt.website/api/receipt/tag', {
+            receipt_id: this.dialogReceipt._id,
+            tag_name: tag
+          }).then((response) => {
+            this.$emit('update')
+          }).catch(error => {
+            console.log("error", error)
+          })
+        })
+
+        tagToDelete.forEach((tag) => {
+          axios.delete('https://id.ereceipt.website/api/receipt/tag', {
+            data: {
+              receipt_id: this.dialogReceipt._id,
+              tag_name: tag
+            }
+          }).then((response) => {
+            this.$emit('update')
+          }).catch(error => {
+            console.log("error", error)
+          })
+        })
+
+        this.dialogReceipt.tags = newTags
+        this.rawReceipts = this.rawReceipts.map(el => {
+          return el._id == this.dialogReceipt._id ? this.dialogReceipt : el
+        })
       }
     },
 
     mounted(){
-      console.log("mounted2");
-      this.getallReceipts();
-
+      this.getReceipts({ client_id: -1 })
     },
 
     methods:{
-      getallReceipts() {
-        axios.get('https://id.ereceipt.website/api/receipt/?client_id=-1')
-          .then(response =>{
-            this.receipts = response.data;
-            const groupby = (arr, func) => {
-              return arr.reduce(function(groups, item) {
-                const val = func(item);
-                groups[val] = groups[val] || [];
-                groups[val].push(item);
-                groups[val].sort((a, b) => {
-                  return new Date(b.date) - new Date(a.date);
-                });
-                return groups;
-              }, {});
-            };
-            this.receipts = groupby(this.receipts, (rec) => {
-              let date = new Date(rec.date);
-              date.setHours(0);
-              date.setMinutes(0);
-              date.setSeconds(0);
-              date.setMilliseconds(0);
-              return date;
-            });
-            console.log("receipts", this.receipts);
-            for (let i in this.receipts){
-              console.log("kkk", i);
-            }
+      getReceipts(searchParams) {
+        axios.get('https://id.ereceipt.website/api/receipt', {
+          params: searchParams
+        })
+        .then(response =>{
+          this.rawReceipts = response.data.map((el) => {
+            el.tags = el.tags.map((el) => (el.name))
+            return el
           })
-          .catch(error =>{
-            console.log("error", error)
-
-          })
+        })
+        .catch(error =>{
+          console.log("error", error)
+        })
       },
+
       openReceipt: function(receipt) {
         this.dialog = true
         this.dialogReceipt = receipt
-      } 
+        this.receiptTags = receipt.tags
+      }
     }
 
   }
@@ -215,6 +248,10 @@
 
         &.bord1 {
           border-bottom: 3px solid #c8c8c8;
+        }
+
+        &.bord2 {
+          border-top: 3px solid #c8c8c8;
         }
       }
     }
