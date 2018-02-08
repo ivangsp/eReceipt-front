@@ -1,8 +1,9 @@
 <template>
-  <v-layout row wrap class="mt-5">
-    <v-flex (md10|sm10) offset-md1>
+  <v-layout row wrap class="mt-5 statistics" >
+    <v-flex md2></v-flex>
+    <v-flex (md9|sm10) ml-5 pl-5>
       <v-layout row wrap>
-        <v-flex md8 sm10 class="ml-3"  >
+        <v-flex md12 sm12 class="ml-3"  >
           <p >Total Expences per quarter</p>
           <v-divider ></v-divider>
         </v-flex>
@@ -15,7 +16,7 @@
       <v-spacing></v-spacing>
 
       <v-layout row wrap class="mt-5">
-        <v-flex md8 sm10 class="ml-3"  >
+        <v-flex md12 sm12 class="ml-3"  >
           <p >Expences by category</p>
           <v-divider ></v-divider>
         </v-flex>
@@ -35,6 +36,7 @@
       </v-layout>
 
     </v-flex>
+    <v-flex md1></v-flex>
 
   </v-layout>
 </template>
@@ -85,5 +87,11 @@
   .piechart{
     height: 30%;
     width: auto;
+  }
+
+  .statistics
+  p{
+    color: #595959;
+    font-size: 18px;
   }
 </style>
