@@ -1,5 +1,111 @@
 <template>
   <v-app>
+      <v-navigation-drawer
+        class="white"
+        width="400"
+        floating
+        clipped
+        fixed
+        app
+      >
+        <v-layout row wrap>
+          <v-flex md12>
+            <v-text-field
+              prepend-icon="search"
+              label="Search"
+            ></v-text-field>
+          </v-flex>
+          <v-flex md6>
+            <div class="inline-heading">Filter search by:</div>
+          </v-flex>
+          <v-flex  md6>
+            <v-radio-group v-model="selectedSort" row>
+              <v-radio label="Price" value="price"></v-radio>
+              <v-radio label="Place" value="place"></v-radio>
+            </v-radio-group>
+          </v-flex>
+          <v-flex md12>
+            <div class="inline-heading">Search by date:</div>
+          </v-flex>
+          <v-flex md12>
+            <vc-date-picker
+              mode='range'
+              v-model='selectedDate'
+              is-inline
+              show-caps
+              is-expanded
+              :theme-styles='calendarStyles'
+              drag-color="#aee4f3"
+              select-color="#00a6de"
+              :month-labels='["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
+              :weekday-labels='["MO", "TU", "WE", "TH", "FR", "SA", "SU"]'
+            ></vc-date-picker>
+          </v-flex>
+          <v-flex md12>
+            <v-divider></v-divider>
+            <v-list>
+              <v-list-group>
+                <v-list-tile slot="item">
+                  <v-list-tile-action>
+                    <v-icon>flag</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>Tags</v-list-tile-title>
+                  </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-icon>keyboard_arrow_down</v-icon>
+                  </v-list-tile-action>
+                </v-list-tile>
+                <v-list-tile v-for="tag in tags" :key="tag.title" @click="">
+                  <v-list-tile-content>
+                    <v-list-tile-title>
+                      <v-checkbox :label="tag.title" v-model="selectedTags" :value="tag.title"></v-checkbox>
+
+                    </v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list-group>
+            </v-list>
+          </v-flex>
+        </v-layout>
+      </v-navigation-drawer>
+      <v-toolbar
+        class="black"
+        height="100px"
+        clipped-left
+        flat
+        fixed
+        app
+      >
+        <img id="logo" src="./assets/logo.svg" @click="$router.push('/receipts')">
+        <v-toolbar-items id="menu">
+          <v-btn class="menu-item" active-class="active-menu-item" depressed to="/receipts" exact>Receipts</v-btn>
+          <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
+        </v-toolbar-items>
+        <div class="align-center" style="margin-left: auto">
+          <div class="hello-user">Hello, {{username}}!</div>
+          <v-menu offset-y>
+            <v-avatar size="50px" slot="activator">
+              <img src="./assets/icon.svg">
+            </v-avatar>
+            <v-list>
+              <v-list-tile @click="">
+                <v-list-tile-action>
+                  <v-icon>account_circle</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-title>Profile</v-list-tile-title>
+              </v-list-tile>
+              <v-list-tile @click="logout">
+                <v-list-tile-action>
+                  <v-icon>power_settings_new</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-title>Logout</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </div>
+
+      </v-toolbar>
     <v-navigation-drawer
       class="white"
       width="400"
@@ -19,9 +125,9 @@
           <div class="inline-heading">Filter search by:</div>
         </v-flex>
         <v-flex  md6>
-          <v-radio-group v-model="selectedSort" row>
-            <v-radio label="Price" value="price"></v-radio>
-            <v-radio label="Place" value="place"></v-radio>
+          <v-radio-group row>
+            <v-radio label="Price"></v-radio>
+            <v-radio label="Place"></v-radio>
           </v-radio-group>
         </v-flex>
         <v-flex md12>
@@ -35,8 +141,8 @@
             show-caps
             is-expanded
             :theme-styles='calendarStyles'
-            drag-color="#aee4f3"
-            select-color="#00a6de"
+            drag-color="#22b4fc"
+            select-color="#0092da"
             :month-labels='["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
             :weekday-labels='["MO", "TU", "WE", "TH", "FR", "SA", "SU"]'
           ></vc-date-picker>
@@ -59,8 +165,8 @@
               <v-list-tile v-for="tag in tags" :key="tag.title" @click="">
                 <v-list-tile-content>
                   <v-list-tile-title>
-                    <v-checkbox :label="tag.title" v-model="selectedTags" :value="tag.title"></v-checkbox>
-
+                    <v-icon>chevron_right</v-icon>
+                    {{ tag.title }}
                   </v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
@@ -83,7 +189,7 @@
         <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
       </v-toolbar-items>
       <div class="align-center" style="margin-left: auto">
-        <div class="hello-user">Hello, {{username}}!</div>
+        <div class="hello-user">Hello, Ucha!</div>
         <v-menu offset-y>
           <v-avatar size="50px" slot="activator">
             <img src="./assets/icon.svg">
@@ -106,6 +212,7 @@
       </div>
 
     </v-toolbar>
+
     <v-content class="white">
       <v-container fluid style="padding: 50px;">
         <v-slide-x-transition mode="out-in">

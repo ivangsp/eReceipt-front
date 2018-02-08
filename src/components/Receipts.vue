@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-layout row wrap>
       <v-flex md6 style="margin-bottom: 50px;">
         <v-select
           class="company-select"
@@ -31,17 +30,17 @@
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                   <div class="tag">
                     #gas
@@ -49,12 +48,12 @@
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt omega">
-                    
+
                   </div>
                 </v-flex>
               </v-layout>
@@ -83,17 +82,17 @@
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                   <div class="tag">
                     #gas
@@ -101,12 +100,12 @@
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
                 <v-flex md2>
                   <div class="receipt">
-                    
+
                   </div>
                 </v-flex>
               </v-layout>
@@ -301,10 +300,6 @@
         padding: 0 10px;
       }
     }
-  }
-
-  .expansion-panel__header {
-    background-color: red;
   }
 
 </style>
