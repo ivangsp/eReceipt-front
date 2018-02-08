@@ -56,10 +56,10 @@
                     <v-icon>keyboard_arrow_down</v-icon>
                   </v-list-tile-action>
                 </v-list-tile>
-                <v-list-tile v-for="tag in tags" :key="tag.title" @click="">
+                <v-list-tile v-for="tag in tags" :key="tag.name" @click="">
                   <v-list-tile-content>
                     <v-list-tile-title>
-                      <v-checkbox :label="tag.title" v-model="selectedTags" :value="tag.title"></v-checkbox>
+                      <v-checkbox :label="tag.name" v-model="selectedTags" :value="tag.name"></v-checkbox>
 
                     </v-list-tile-title>
                   </v-list-tile-content>
@@ -77,9 +77,9 @@
         fixed
         app
       >
-        <img id="logo" src="./assets/logo.svg" @click="$router.push('/receipts')">
+        <img id="logo" src="./assets/logo.svg" @click="$router.push('/')">
         <v-toolbar-items id="menu">
-          <v-btn class="menu-item" active-class="active-menu-item" depressed to="/receipts" exact>Receipts</v-btn>
+          <v-btn class="menu-item" active-class="active-menu-item" depressed to="/" exact>Receipts</v-btn>
           <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
         </v-toolbar-items>
         <div class="align-center" style="margin-left: auto">
@@ -109,9 +109,7 @@
     <v-content class="white">
       <v-container fluid style="padding: 50px;">
         <v-slide-x-transition mode="out-in">
-          <router-view>
-
-          </router-view>
+          <router-view @update="fetchTags"></router-view>
         </v-slide-x-transition>
       </v-container>
     </v-content>
@@ -156,14 +154,23 @@
     }),
 
     mounted(){
-      this.login();
+      this.login()
+      this.fetchTags()
     },
     methods: {
-
       login () {
         axios.get('https://id.ereceipt.website/api/whoami')
           .then(response => {
             this.username = response.data
+          }).catch(error => {
+          console.log("error", error)
+        })
+      },
+
+      fetchTags () {
+        axios.get('https://id.ereceipt.website/api/tag')
+          .then(response => {
+            this.tags = response.data
           }).catch(error => {
           console.log("error", error)
         })
