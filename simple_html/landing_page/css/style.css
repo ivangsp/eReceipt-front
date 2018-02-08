@@ -32,5 +32,8 @@ body {
 
 #yleoba{
 
-  color: rgb(68, 123, 224);
+  color: rgba(146, 123, 58, 0.678); 
+  opacity: 90%;
+  font-size: 50px;
+  left: 10;
 }
