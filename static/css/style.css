@@ -14,3 +14,12 @@
   background-color: #fafafa;
 }
 
+.tags .input-tag {
+  border: none !important;
+  background-color: transparent !important;
+  color: #575756 !important;
+}
+
+.tags .input-tag .remove {
+  color: #0097cb !important;
+}

@@ -12,11 +12,11 @@
       <v-flex md12>
         <v-expansion-panel class="receipts-panel" v-for="(rs, day) in receipts">
           <v-expansion-panel-content>
-            <div slot="header"  >{{ day| moment('DD.MM.YYYY')}}</div>
+            <div slot="header">{{day | moment('DD.MM.YYYY') }}</div>
             <v-card class="receipt-card">
               <v-layout row wrap>
                 <v-flex md2 v-for="receipt in rs">
-                  <div class="receipt" @click="">
+                  <div class="receipt" @click="dialog = !dialog">
                     <div class="price">
                       {{receipt.total}}€
                     </div>
@@ -33,177 +33,80 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-flex>
-<!--     <v-expansion-panel expand>
-      <v-expansion-panel-content v-for="item in receipts" :key="item.id" v-bind:value="item.id === 1">
-        <div slot="header">{{item.date}}</div>
-        <v-card>
-          <v-card-text class="lighten-2">
-            <v-layout row wrap class="receipt ">
 
+    <v-dialog v-model="dialog" max-width="600">
+      <div class="receipt-dialog">
+        <div class="dialog-logo">
+          <img src="../assets/logo_black.svg" height="80px;">
+        </div>
+        <div class="dialog-header">
+          Maxima XX<br>
+          Voru, 50410 Tartu, tel 8002 121
+        </div>
+        <div class="dialog-content">
+          <v-container grid-list-md>
+            <v-layout row wrap>
+              <v-flex xs6 class="cont-1 bord1 text-md-left">KOKKU:</v-flex>
+              <v-flex xs6 class="cont-1 bord1 text-md-right">5.34€</v-flex>
 
-              <v-flex sm2 >
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Kassa:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-right">46059</v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Kviitungi nr:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-right">34966</v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Aeg:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-right">01.01.2018</v-flex>
+              <v-flex xs6 class="cont-2 text-md-left">Teenindaja:</v-flex>
+              <v-flex xs6 class="cont-2 text-md-right">209</v-flex>
+              <v-flex xs6 class="cont-2 bord1 text-md-left">Kliendikaart:</v-flex>
+              <v-flex xs6 class="cont-2 bord1 text-md-right">Aitah Kaart (*****576)</v-flex>
+              <v-flex xs6 class="cont-2 bord2 text-md-left">Nimetus</v-flex>
+              <v-flex xs3 class="cont-2 bord2 text-md-right">Kogus</v-flex>
+              <v-flex xs3 class="cont-2 bord2 text-md-right">Summa</v-flex>
 
-              <v-flex sm2>
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
-              <v-flex sm2>
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
-              <v-flex sm2>
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
+              <v-flex xs6 class="cont-3 text-md-left">Piim Farmi 1.5L</v-flex>
+              <v-flex xs3 class="cont-3 text-md-right">1</v-flex>
+              <v-flex xs3 class="cont-3 text-md-right">1.05€</v-flex>
+              <v-flex xs6 class="cont-3 text-md-left">Markmepaberid</v-flex>
+              <v-flex xs3 class="cont-3 text-md-right">10</v-flex>
+              <v-flex xs3 class="cont-3 text-md-right">1.75€</v-flex>
+              <v-flex xs6 class="cont-3 text-md-left">Kupsis sokolaadis</v-flex>
+              <v-flex xs3 class="cont-3 text-md-right">1</v-flex>
+              <v-flex xs3 class="cont-3 text-md-right">0.74€</v-flex>
+              <v-flex xs6 class="cont-3 bord1 text-md-left">Belgia vahvel</v-flex>
+              <v-flex xs3 class="cont-3 bord1 text-md-right">1</v-flex>
+              <v-flex xs3 class="cont-3 bord1 text-md-right">1.80€</v-flex>
+              <v-flex xs8 class="cont-3 text-md-left">Pangakaart (SWEDBANK *****87593):</v-flex>
+              <v-flex xs4 class="cont-3 text-md-right">5.24€</v-flex>
+              <v-flex xs8 class="cont-3 text-md-left">Boonusmakse:</v-flex>
+              <v-flex xs4 class="cont-3 text-md-right">0.10€</v-flex>
+              <v-flex xs8 class="cont-1 text-md-left">KOKKU:</v-flex>
+              <v-flex xs4 class="cont-1 text-md-right">0.10€</v-flex>
             </v-layout>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
- -->
-
-    <v-layout row >
-      <v-dialog v-model="dialog" max-width="450">
-        <v-card>
-          <v-toolbar color="cyan" dark>
-            <v-toolbar-title>Rimi super market</v-toolbar-title>
-            <v-spacer></v-spacer>
-          </v-toolbar>
-          <table class="table table-striped">
-            <tbody>
-            <tr>
-              <td scope="col-md-9">Banana</td>
-              <td scope="col-md-3">&euro; 2.0</td>
-            </tr>
-            <tr>
-              <td scope="col-md-9">choclate</td>
-              <td scope="col-md-3"> &euro;1.2</td>
-            </tr>
-            <tr>
-              <td scope="col-md-9">Chicken</td>
-              <td scope="col-md-3"> &euro; 4.0</td>
-            </tr>
-
-            </tbody>
-          </table>
-
-          <div class="row">
-            <div class="col-auto">
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">Add tag</div>
-                </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="eg fruits">
-                  <button class="btn btn-primary md-2">Add</button>
-              </div>
-            </div>
-
-          </div>
-          <v-divider></v-divider>
-
-          <div class="row">
-
-            <div class="col-auto">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="autoSizingCheck1">
-                <label class="form-check-label" for="autoSizingCheck1">
-                  Fruits
-                </label>
-              </div>
-            </div><div class="col-auto">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
-                <label class="form-check-label" for="autoSizingCheck2">
-                  cereals
-                </label>
-              </div>
-            </div>
-            <div class="col-auto">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                <label class="form-check-label" for="autoSizingCheck">
-                  Alchol
-                </label>
-              </div>
-            </div>
-          </div>
-          <v-card-actions>
-            <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
-    </v-layout>
+          </v-container>
+        </div>
+        <div class="dialog-footer">
+          Maxima Eesti OU, Peterburi tee 47, 11415, Tallinn, Eesti<br>
+          Reg.kood: 74927502, KMKR: EE840284502
+        </div>
+        <div class="tags">
+          <input-tag placeholder="Add Tag" :tags="receiptTags"></input-tag>
+        </div>
+      </div>
+    </v-dialog>
   </div>
-
 </template>
 
 <script>
   import axios from 'axios';
-
+  import InputTag from 'vue-input-tag'
 
   export default {
+    components: { InputTag },
     data () {
       return {
         dialog: false,
-        // receipts:[
-        //   { id:   1,
-        //     date: '08-feb-2018',
-        //     place: 'Remi supermarket',
-        //     total: 5.0,
-        //     item: [
-        //       {
-        //         name:'banana',
-        //         price:1.2,
-        //       },
-        //       {
-        //         name:'milk',
-        //         price: 2.0,
-        //       }
-        //     ]
-        //
-        //   },
-        //   {
-        //     id: 2,
-        //     date: '07-feb-2018',
-        //     place: 'Remi supermarket',
-        //     total: 5.0,
-        //     item: [
-        //       {
-        //         name:'banana',
-        //         price:1.2,
-        //       },
-        //       {
-        //         name:'milk',
-        //         price: 2.0,
-        //       }
-        //     ]
-        //
-        //   }
-        //
-        // ],
+        receiptTags: ['bla'],
+        dialogReceipt: null,
         receipts: []
       }
     },
@@ -253,23 +156,69 @@
   }
 </script>
 <style lang="scss" scoped>
-  // .receipt
-  // .btn{
-  //   min-height: 100px;
-  // }
+  .receipt-dialog {
+    background-color: white;
+    padding: 10px;
+    position: relative;
 
-  // .receipt
-  // .flex.md2 {
-  //   -ms-flex-preferred-size: 16.666666666666664%;
-  //   flex-basis: 16.666666666666664%;
-  //   max-width: 12.666666666666664%;
-  // }
+    .dialog-logo {
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
 
-  // .company-select {
-  //   .input-group__input {
-  //     background-color: red;
-  //   }
-  // }
+    .dialog-header {
+      color: #6a6767;
+      font-size: 16pt;
+      text-align: center;
+    }
+
+    .dialog-footer {
+      margin-top: 10px;
+      color: #a29f9f;
+      font-size: 12pt;
+      text-align: center;
+    }
+
+    .dialog-content {
+      color: #696767;
+      font-size: 14pt;
+      font-weight: 500;
+
+      .cont-1 {
+        font-weight: 600;
+
+        &.bord1 {
+          border-bottom: 3px solid #0097cb;
+        }
+      }
+      .cont-2 {
+        line-height: 20px;
+
+        &.bord1 {
+          border-bottom: 3px solid #909090;
+        }
+
+        &.bord2 {
+          border-bottom: 2px solid #c8c8c8;
+        }
+      }
+
+      .cont-3 {
+        line-height: 20px;
+        font-weight: 400;
+
+        &.bord1 {
+          border-bottom: 3px solid #c8c8c8;
+        }
+      }
+    }
+
+    .tags {
+      margin-top: 20px;
+    }
+  }
 
   .receipt, .tag {
     margin: 0 15px;
