@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
       <v-flex md6 style="margin-bottom: 50px;">
         <v-select
           class="company-select"
@@ -115,59 +114,12 @@
         </v-expansion-panel>
       </v-flex>
 <!--     <v-expansion-panel expand>
-=======
-    <v-expansion-panel expand>
->>>>>>> parent of ddd2aea... added landing page
       <v-expansion-panel-content v-for="item in receipts" :key="item.id" v-bind:value="item.id === 1">
         <div slot="header">{{item.date}}</div>
         <v-card>
           <v-card-text class="lighten-2">
             <v-layout row wrap class="receipt ">
-<<<<<<< HEAD
-=======
 
-              <v-flex sm2 >
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
-              <v-flex sm2>
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
-              <v-flex sm2>
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
-              <v-flex sm2>
-                <v-btn @click.native.stop="dialog = true" class=" grey">
-                  <div class="" >
-                    <h1><sup>$</sup> 25 </h1>
-                    <h5 class="">Remi supermarket</h5>
-                  </div>
-                </v-btn>
-              </v-flex>
-
-            </v-layout>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
->>>>>>> parent of ddd2aea... added landing page
 
               <v-flex sm2 >
                 <v-btn @click.native.stop="dialog = true" class=" grey">
@@ -363,7 +315,6 @@
     .receipt-card {
       border: none;
 
-<<<<<<< HEAD
       .receipt {
         height: 150px;
         background-color: #d7d7d7;
@@ -393,13 +344,6 @@
         padding: 0 10px;
       }
     }
-=======
-  .receipt
-  .flex.md2 {
-    -ms-flex-preferred-size: 16.666666666666664%;
-    flex-basis: 16.666666666666664%;
-    max-width: 12.666666666666664%;
->>>>>>> parent of ddd2aea... added landing page
   }
 
 </style>

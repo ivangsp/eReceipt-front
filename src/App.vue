@@ -1,7 +1,5 @@
 <template>
   <v-app>
-<<<<<<< HEAD
-    <div v-if="visible">
       <v-navigation-drawer
         class="white"
         width="400"
@@ -108,8 +106,6 @@
         </div>
 
       </v-toolbar>
-    </div>
-=======
     <v-navigation-drawer
       class="white"
       width="400"
@@ -216,7 +212,7 @@
       </div>
 
     </v-toolbar>
->>>>>>> parent of ddd2aea... added landing page
+
     <v-content class="white">
       <v-container fluid style="padding: 50px;">
         <v-slide-x-transition mode="out-in">
@@ -240,12 +236,7 @@
       Receipt
     },
     data: () => ({
-<<<<<<< HEAD
-      path_url: '',
-      visible: true,
       username: 'Ucha',
-=======
->>>>>>> parent of ddd2aea... added landing page
       tags: [{
         title: 'Gas'
       }, {
