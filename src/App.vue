@@ -152,6 +152,12 @@
       },
     }),
 
+    watch: {
+      selectedTags: function(tags) {
+        this.filterReceipts()
+      }
+    },
+
     mounted(){
       this.login()
       this.fetchTags()

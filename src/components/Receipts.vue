@@ -85,7 +85,7 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex md6>
-                <v-btn block outline color="grey darken-2" class="white--text">
+                <v-btn block @click="download" outline color="grey darken-2" class="white--text">
                   Download
                   <v-icon right dark>cloud_download</v-icon>
                 </v-btn>
@@ -209,6 +209,14 @@
 
       sendToBusiness() {
         this.$toasted.success('You have successfuly sent the receipt to your work account!', {
+          theme: "primary", 
+          position: "bottom-left", 
+          duration : 2000
+        })
+      },
+
+      download() {
+        this.$toasted.info('This receipt will be downloaded when this feature will be added!', {
           theme: "primary", 
           position: "bottom-left", 
           duration : 2000
