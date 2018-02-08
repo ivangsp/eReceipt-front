@@ -1,3 +1,4 @@
+
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
@@ -34,3 +35,10 @@
 
   color: rgb(68, 123, 224);
 }
+
+.expansion-panel__header {
+  color: #999;
+  font-weight: 500;
+  background-color: #fafafa;
+}
+

@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "chart.js": "^2.7.1",
     "v-calendar": "^0.5.5",
     "vue": "^2.5.2",

@@ -1,58 +1,167 @@
 <template>
   <div>
-    <v-layout row wrap>
-      <v-flex sm8 offset-sm2>
-        <v-expansion-panel expand>
-          <v-expansion-panel-content v-for="item in receipts" :key="item.id" v-bind:value="item.id === 1">
-            <div slot="header">{{item.date}}</div>
-            <v-card>
-              <v-card-text class="lighten-2">
-                <v-layout row  class="receipt ">
+      <v-flex md6 style="margin-bottom: 50px;">
+        <v-select
+          class="company-select"
+          :items="['Own receipts', 'Company\'s receipts' ]"
+          label="Select what?"
+          single-line
+          hide-details
+        ></v-select>
+      </v-flex>
+      <v-flex md12>
+        <v-expansion-panel class="receipts-panel">
+          <v-expansion-panel-content>
+            <div slot="header">01.01.2018</div>
+            <v-card class="receipt-card">
+              <v-layout row wrap>
+                <v-flex md2>
+                  <div class="receipt alpha" @click="">
+                    <div class="price">
+                      8.99€
+                    </div>
+                    <div class="store">
+                      Selver AS
+                    </div>
+                  </div>
+                  <div class="tag alpha">
+                    #food
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
 
-                  <v-flex  >
-                    <v-btn @click.native.stop="dialog = true" class=" grey">
-                      <div class="" >
-                        <h1><sup>$</sup> 25 </h1>
-                        <h5 class="">Remi supermarket</h5>
-                      </div>
-                    </v-btn>
-                  </v-flex>
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
 
-                  <v-flex >
-                    <v-btn @click.native.stop="dialog = true" class=" grey">
-                      <div class="" >
-                        <h1><sup>$</sup> 25 </h1>
-                        <h5 class="">Remi supermarket</h5>
-                      </div>
-                    </v-btn>
-                  </v-flex>
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
 
-                  <v-flex >
-                    <v-btn @click.native.stop="dialog = true" class=" grey">
-                      <div class="" >
-                        <h1><sup>$</sup> 25 </h1>
-                        <h5 class="">Remi supermarket</h5>
-                      </div>
-                    </v-btn>
-                  </v-flex>
+                  </div>
+                  <div class="tag">
+                    #gas
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
 
-                  <v-flex >
-                    <v-btn @click.native.stop="dialog = true" class=" grey">
-                      <div class="" >
-                        <h1><sup>$</sup> 25 </h1>
-                        <h5 class="">Remi supermarket</h5>
-                      </div>
-                    </v-btn>
-                  </v-flex>
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt omega">
 
-                </v-layout>
-              </v-card-text>
+                  </div>
+                </v-flex>
+              </v-layout>
             </v-card>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-flex>
-    </v-layout>
+      <v-flex md12>
+        <v-expansion-panel class="receipts-panel">
+          <v-expansion-panel-content>
+            <div slot="header">01.01.2018</div>
+            <v-card class="receipt-card">
+              <v-layout row wrap>
+                <v-flex md2>
+                  <div class="receipt" @click="">
+                    <div class="price">
+                      8.99€
+                    </div>
+                    <div class="store">
+                      Selver AS
+                    </div>
+                  </div>
+                  <div class="tag">
+                    #food
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
 
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
+
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
+
+                  </div>
+                  <div class="tag">
+                    #gas
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
+
+                  </div>
+                </v-flex>
+                <v-flex md2>
+                  <div class="receipt">
+
+                  </div>
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-flex>
+<!--     <v-expansion-panel expand>
+      <v-expansion-panel-content v-for="item in receipts" :key="item.id" v-bind:value="item.id === 1">
+        <div slot="header">{{item.date}}</div>
+        <v-card>
+          <v-card-text class="lighten-2">
+            <v-layout row wrap class="receipt ">
+
+              <v-flex sm2 >
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+              <v-flex sm2>
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+              <v-flex sm2>
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+              <v-flex sm2>
+                <v-btn @click.native.stop="dialog = true" class=" grey">
+                  <div class="" >
+                    <h1><sup>$</sup> 25 </h1>
+                    <h5 class="">Remi supermarket</h5>
+                  </div>
+                </v-btn>
+              </v-flex>
+
+            </v-layout>
+          </v-card-text>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+ -->
 
     <v-layout row >
       <v-dialog v-model="dialog" max-width="450">
@@ -143,8 +252,8 @@
 
 <script>
   export default {
-    data(){
-      return{
+    data () {
+      return {
         dialog: false,
 
         tags:[
@@ -217,13 +326,63 @@
   }
 </script>
 <style lang="scss" scoped>
-  .receipt
-  .btn{
-    min-height: 100px;
-  }
+  // .receipt
+  // .btn{
+  //   min-height: 100px;
+  // }
 
- .expansion-panel__header {
-    background-color: #FAFAFA;
+  // .receipt
+  // .flex.md2 {
+  //   -ms-flex-preferred-size: 16.666666666666664%;
+  //   flex-basis: 16.666666666666664%;
+  //   max-width: 12.666666666666664%;
+  // }
+
+  // .company-select {
+  //   .input-group__input {
+  //     background-color: red;
+  //   }
+  // }
+
+  .receipt, .tag {
+    margin: 0 15px;
+  }
+  .receipts-panel {
+    color: #999;
+    margin: 0 0;
+
+    .receipt-card {
+      border: none;
+
+      .receipt {
+        height: 150px;
+        background-color: #d7d7d7;
+        margin-top: 30px;
+        text-align: center;
+        color: #414040;
+        box-shadow: none;
+
+        .price {
+          line-height: 100px;
+          height: 100px;
+          font-size: 22pt;
+        }
+
+        .store {
+          line-height: 50px;
+          height: 50px;
+          font-size: 16pt;
+        }
+      }
+
+      .tag {
+        height: 20px;
+        background-color: #9a9999;
+        margin-bottom: 30px;
+        color: #eeeeee;
+        padding: 0 10px;
+      }
+    }
   }
 
 </style>
