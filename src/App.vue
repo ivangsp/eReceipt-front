@@ -189,7 +189,7 @@
         <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
       </v-toolbar-items>
       <div class="align-center" style="margin-left: auto">
-        <div class="hello-user">Hello, Ucha!</div>
+        <div class="hello-user">Hello {{username}}</div>
         <v-menu offset-y>
           <v-avatar size="50px" slot="activator">
             <img src="./assets/icon.svg">
@@ -259,20 +259,28 @@
           borderTop: 'solid #ccc 1px',
           width: '100%'
         },
-      }
+      },
     }),
-    created () {
-      axios.get('https://id.ereceipt.website/api/whoami').then(response => {
-        this.username = response.data
-      }).catch(error => {
-        console.log(error)
-      })
+
+    mounted(){
+      this.login();
     },
     methods: {
-      logout: () => {
-        console.log('loging out...')
+
+      login () {
+        axios.get('https://id.ereceipt.website/api/whoami')
+          .then(response => {
+            this.username = response.data
+          }).catch(error => {
+          console.log("error", error)
+        })
+      },
+
+      logout(){
+        console.log("logedout....")
       }
-    }
+    },
+
   }
 </script>
 

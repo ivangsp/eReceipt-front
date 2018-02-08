@@ -12,9 +12,11 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^2.7.1",
+    "moment": "^2.20.1",
     "v-calendar": "^0.5.5",
     "vue": "^2.5.2",
     "vue-chartjs": "^3.1.1",
+    "vue-moment": "^3.2.0",
     "vue-router": "^3.0.1",
     "vuetify": "^0.17.7"
   },

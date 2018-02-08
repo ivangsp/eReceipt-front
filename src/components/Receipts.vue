@@ -10,102 +10,22 @@
         ></v-select>
       </v-flex>
       <v-flex md12>
-        <v-expansion-panel class="receipts-panel">
+        <v-expansion-panel class="receipts-panel" v-for="(rs, day) in receipts">
           <v-expansion-panel-content>
-            <div slot="header">01.01.2018</div>
+            <div slot="header"  >{{ day| moment('DD.MM.YYYY')}}</div>
             <v-card class="receipt-card">
               <v-layout row wrap>
-                <v-flex md2>
-                  <div class="receipt alpha" @click="">
-                    <div class="price">
-                      8.99€
-                    </div>
-                    <div class="store">
-                      Selver AS
-                    </div>
-                  </div>
-                  <div class="tag alpha">
-                    #food
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                  <div class="tag">
-                    #gas
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt omega">
-
-                  </div>
-                </v-flex>
-              </v-layout>
-            </v-card>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-flex>
-      <v-flex md12>
-        <v-expansion-panel class="receipts-panel">
-          <v-expansion-panel-content>
-            <div slot="header">01.01.2018</div>
-            <v-card class="receipt-card">
-              <v-layout row wrap>
-                <v-flex md2>
+                <v-flex md2 v-for="receipt in rs">
                   <div class="receipt" @click="">
                     <div class="price">
-                      8.99€
+                      {{receipt.total}}€
                     </div>
                     <div class="store">
-                      Selver AS
+                      {{receipt.store}}
                     </div>
                   </div>
                   <div class="tag">
                     #food
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                  <div class="tag">
-                    #gas
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
-                  </div>
-                </v-flex>
-                <v-flex md2>
-                  <div class="receipt">
-
                   </div>
                 </v-flex>
               </v-layout>
@@ -241,47 +161,93 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
+
   export default {
     data () {
       return {
         dialog: false,
-        receipts:[
-          { id:   1,
-            date: '08-feb-2018',
-            place: 'Remi supermarket',
-            total: 5.0,
-            item: [
-              {
-                name:'banana',
-                price:1.2,
-              },
-              {
-                name:'milk',
-                price: 2.0,
-              }
-            ]
-
-          },
-          {
-            id: 2,
-            date: '07-feb-2018',
-            place: 'Remi supermarket',
-            total: 5.0,
-            item: [
-              {
-                name:'banana',
-                price:1.2,
-              },
-              {
-                name:'milk',
-                price: 2.0,
-              }
-            ]
-
-          }
-
-        ]
+        // receipts:[
+        //   { id:   1,
+        //     date: '08-feb-2018',
+        //     place: 'Remi supermarket',
+        //     total: 5.0,
+        //     item: [
+        //       {
+        //         name:'banana',
+        //         price:1.2,
+        //       },
+        //       {
+        //         name:'milk',
+        //         price: 2.0,
+        //       }
+        //     ]
+        //
+        //   },
+        //   {
+        //     id: 2,
+        //     date: '07-feb-2018',
+        //     place: 'Remi supermarket',
+        //     total: 5.0,
+        //     item: [
+        //       {
+        //         name:'banana',
+        //         price:1.2,
+        //       },
+        //       {
+        //         name:'milk',
+        //         price: 2.0,
+        //       }
+        //     ]
+        //
+        //   }
+        //
+        // ],
+        receipts: []
       }
+    },
+
+    mounted(){
+      console.log("mounted2");
+      this.getallReceipts();
+
+    },
+
+    methods:{
+      getallReceipts() {
+        axios.get('https://id.ereceipt.website/api/receipt/?client_id=-1')
+          .then(response =>{
+            this.receipts = response.data;
+            const groupby = (arr, func) => {
+              return arr.reduce(function(groups, item) {
+                const val = func(item);
+                groups[val] = groups[val] || [];
+                groups[val].push(item);
+                groups[val].sort((a, b) => {
+                  return new Date(b.date) - new Date(a.date);
+                });
+                return groups;
+              }, {});
+            };
+            this.receipts = groupby(this.receipts, (rec) => {
+              let date = new Date(rec.date);
+              date.setHours(0);
+              date.setMinutes(0);
+              date.setSeconds(0);
+              date.setMilliseconds(0);
+              return date;
+            });
+            console.log("receipts", this.receipts);
+            for (let i in this.receipts){
+              console.log("kkk", i);
+            }
+          })
+          .catch(error =>{
+            console.log("error", error)
+
+          })
+      },
     }
 
   }
