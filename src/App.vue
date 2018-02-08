@@ -140,8 +140,8 @@
       selectedSort: 'price',
       selectedTags: [],
       selectedDate: {
-        start: new Date(2018, 0, 9),
-        end: new Date(2018, 0, 18)
+        start: new Date(2018, 1, 2),
+        end: new Date(2018, 1, 8)
       },
       calendarStyles: {
         wrapper: {
@@ -163,7 +163,7 @@
       login () {
         axios.get('https://id.ereceipt.website/api/whoami')
           .then(response => {
-            //this.username = response.data
+            this.username = response.data
           }).catch(error => {
           console.log("error", error)
         })

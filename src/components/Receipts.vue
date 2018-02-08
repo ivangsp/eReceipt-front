@@ -225,7 +225,7 @@
   }
 
   .receipt, .tag {
-    margin: 0 15px;
+    margin: 0 25px;
   }
   .receipts-panel {
     color: #999;

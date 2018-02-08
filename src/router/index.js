@@ -9,7 +9,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/receipts', component: Receipts },
+    { path: '/', component: Receipts },
     { path: '/statistics', component: Statistics }
   ]
 })
