@@ -13,8 +13,8 @@
 <body>
   <nav class="black" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" > <img src="ereceipt.png" width="220px" height="125px"></a>
-      <ul class="right hide-on-med-and-down"> 
-        <li><a href="#">Sign in</a></li>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="https://id.ereceipt.website">Sign in</a></li>
         <li><a href="#">Sign up</a></li>
         <li><a href="#">Contact us</a></li>
         <li><a href="#">About us</a></li>
@@ -34,7 +34,7 @@
         <h5 id="yleoba" class="header col s12 light" > Search your receipts digitally</h5>
       </div>
       <div class="row center">
-        <a id="download-button"  class="btn-large waves-effect waves-light" >Get Started</a>
+        <a id="download-button"  class="btn-large waves-effect waves-light" href="https://id.ereceipt.website">Get Started</a>
       </div>
       <br><br>
 
@@ -119,6 +119,15 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script>
+    if(window.location.hostname !== "ereceipt.website") {
+      let a = window.location.href;
+      a = a.split("/");
+      console.log(a);
+      document.getElementById("signinlink").href = a[0] + "//id." + a[2];
+      document.getElementById("download-button").href = a[0] + "//id." + a[2];
+    }
+  </script>
 
   </body>
 </html>
