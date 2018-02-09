@@ -47,7 +47,7 @@
           <v-flex md12>
             <v-divider></v-divider>
             <v-list>
-              <v-list-group>
+              <v-list-group :value="true">
                 <v-list-tile slot="item">
                   <v-list-tile-action>
                     <v-icon>flag</v-icon>
@@ -152,6 +152,15 @@
       },
     }),
 
+    watch: {
+      selectedTags: function() {
+        this.filterReceipts()
+      },
+      selectedDate: function() {
+        this.filterReceipts()
+      }
+    },
+
     mounted(){
       this.login()
       this.fetchTags()
@@ -176,7 +185,7 @@
       },
 
       logout(){
-        console.log("logedout....")
+        location.href = 'https://ereceipt.website'
       },
 
       filterReceipts () {
@@ -197,7 +206,7 @@
         }
 
         params.start_time = this.selectedDate.start.toISOString()
-        params.end_time = this.selectedDate.end
+        params.end_time = new Date(this.selectedDate.end)
         params.end_time.setDate(params.end_time.getDate() + 1)
         params.end_time = params.end_time.toISOString()
 

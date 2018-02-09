@@ -15,6 +15,9 @@ Vue.use(VCalendar, {
   componentPrefix: 'vc'
 })
 
+import Toasted from 'vue-toasted'
+Vue.use(Toasted)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

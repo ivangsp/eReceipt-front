@@ -3,7 +3,9 @@
       <v-flex md6 style="margin-bottom: 50px;">
         <v-select
           class="company-select"
-          :items="['Own receipts', 'Company\'s receipts' ]"
+          v-model="receiptType"
+          :items="receiptTypeSelect"
+          return-object
           label="Select what?"
           single-line
           hide-details
@@ -11,14 +13,14 @@
       </v-flex>
       <v-flex md12>
         <v-expansion-panel class="receipts-panel" v-for="(rs, day) in receipts" :key='day'>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content :value="true">
             <div slot="header">{{day | moment('DD.MM.YYYY') }}</div>
             <v-card class="receipt-card">
               <v-layout row wrap>
                 <v-flex md2 v-for="receipt in rs" :key='receipt.id'>
                   <div class="receipt" @click="openReceipt(receipt)">
                     <div class="price">
-                      {{receipt.total}}€
+                      {{ Math.round(receipt.total*100)/100 }}€
                     </div>
                     <div class="store">
                       {{receipt.store}}
@@ -46,31 +48,31 @@
         <div class="dialog-content">
           <v-container grid-list-md>
             <v-layout row wrap>
-              <v-flex xs6 class="cont-1 bord1 text-md-left">TOTAL:</v-flex>
-              <v-flex xs6 class="cont-1 bord1 text-md-right">{{ dialogReceipt.total }}€</v-flex>
+              <v-flex md6 class="cont-1 bord1 text-md-left">TOTAL:</v-flex>
+              <v-flex md6 class="cont-1 bord1 text-md-right">{{ Math.round(dialogReceipt.total*100)/100 }}€</v-flex>
 
-              <v-flex xs6 class="cont-2 text-md-left">Receipt number:</v-flex>
-              <v-flex xs6 class="cont-2 text-md-right">34966</v-flex>
-              <v-flex xs6 class="cont-2 text-md-left">Date:</v-flex>
-              <v-flex xs6 class="cont-2 text-md-right">{{ dialogReceipt.date | moment('DD.MM.YYYY') }}</v-flex>
-              <v-flex xs6 class="cont-2 text-md-left">Cashier:</v-flex>
-              <v-flex xs6 class="cont-2 text-md-right">209</v-flex>
-              <v-flex xs6 class="cont-2 bord1 text-md-left">Client:</v-flex>
-              <v-flex xs6 class="cont-2 bord1 text-md-right">{{ dialogReceipt.client_id }}</v-flex>
-              <v-flex xs6 class="cont-2 bord2 text-md-left">Product</v-flex>
-              <v-flex xs3 class="cont-2 bord2 text-md-right">Amount</v-flex>
-              <v-flex xs3 class="cont-2 bord2 text-md-right">Price</v-flex>
+              <v-flex md6 class="cont-2 text-md-left">Receipt number:</v-flex>
+              <v-flex md6 class="cont-2 text-md-right">34966</v-flex>
+              <v-flex md6 class="cont-2 text-md-left">Date:</v-flex>
+              <v-flex md6 class="cont-2 text-md-right">{{ dialogReceipt.date | moment('DD.MM.YYYY') }}</v-flex>
+              <v-flex md6 class="cont-2 text-md-left">Cashier:</v-flex>
+              <v-flex md6 class="cont-2 text-md-right">209</v-flex>
+              <v-flex md6 class="cont-2 bord1 text-md-left">Client:</v-flex>
+              <v-flex md6 class="cont-2 bord1 text-md-right">{{ dialogReceipt.client_id }}</v-flex>
+              <v-flex md6 class="cont-2 bord2 text-md-left">Product</v-flex>
+              <v-flex md3 class="cont-2 bord2 text-md-right">Amount</v-flex>
+              <v-flex md3 class="cont-2 bord2 text-md-right">Price</v-flex>
 
               <template v-for="product in dialogReceipt.items">
-                <v-flex xs6 class="cont-3 text-md-left">{{ product.name }}</v-flex>
-                <v-flex xs3 class="cont-3 text-md-right">{{ product.amount }}</v-flex>
-                <v-flex xs3 class="cont-3 text-md-right">{{ product.price_per }}€</v-flex>
+                <v-flex md6 class="cont-3 text-md-left">{{ product.name }}</v-flex>
+                <v-flex md3 class="cont-3 text-md-right">{{ product.amount }}</v-flex>
+                <v-flex md3 class="cont-3 text-md-right">{{ Math.round(product.price_per*100)/100 }}€</v-flex>
               </template>
 
-              <v-flex xs8 class="cont-3 bord2 text-md-left">Debit Card (SWEDBANK *****87593):</v-flex>
-              <v-flex xs4 class="cont-3 bord2 text-md-right">{{ dialogReceipt.total }}€</v-flex>
-              <v-flex xs8 class="cont-1 text-md-left">TOTAL:</v-flex>
-              <v-flex xs4 class="cont-1 text-md-right">{{ dialogReceipt.total }}€</v-flex>
+              <v-flex md8 class="cont-3 bord2 text-md-left">Debit Card (SWEDBANK *****87593):</v-flex>
+              <v-flex md4 class="cont-3 bord2 text-md-right">{{ Math.round(dialogReceipt.total*100)/100 }}€</v-flex>
+              <v-flex md8 class="cont-1 text-md-left">TOTAL:</v-flex>
+              <v-flex md4 class="cont-1 text-md-right">{{ Math.round(dialogReceipt.total*100)/100 }}€</v-flex>
             </v-layout>
           </v-container>
         </div>
@@ -80,6 +82,24 @@
         </div>
         <div class="tags">
           <input-tag placeholder="Add Tag" :tags.sync="receiptTags"></input-tag>
+        </div>
+        <div class="text-md-center">
+          <v-container grid-list-md>
+            <v-layout row wrap>
+              <v-flex md6>
+                <v-btn block @click="download" outline color="grey darken-2" class="white--text">
+                  Download
+                  <v-icon right dark>cloud_download</v-icon>
+                </v-btn>
+              </v-flex>
+              <v-flex md6>
+                <v-btn @click="sendToBusiness" block outline color="blue darken-2" class="white--text">
+                  Send to accountant
+                  <v-icon right dark>send</v-icon>
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </div>
       </div>
     </v-dialog>
@@ -96,6 +116,14 @@
       return {
         dialog: false,
         dialogReceipt: null,
+        receiptType: { text: 'Company\'s receipts', value: 'company' },
+        receiptTypeSelect: [{
+          text: 'Own receipts',
+          value: 'own'
+        }, {
+          text: 'Company\'s receipts',
+          value: 'company'
+        }],
         receiptTags: [],
         rawReceipts: []
       }
@@ -107,9 +135,6 @@
             const val = func(item)
             groups[val] = groups[val] || []
             groups[val].push(item)
-            groups[val].sort((a, b) => {
-              return new Date(b.date) - new Date(a.date)
-            })
 
             return groups
           }, {})
@@ -176,6 +201,8 @@
           this.rawReceipts = response.data.map((el) => {
             el.tags = el.tags.map((el) => (el.name))
             return el
+          }).sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
           })
         })
         .catch(error =>{
@@ -187,6 +214,22 @@
         this.dialog = true
         this.dialogReceipt = receipt
         this.receiptTags = receipt.tags
+      },
+
+      sendToBusiness() {
+        this.$toasted.success('You have successfuly sent the receipt to the accountant!', {
+          theme: "primary", 
+          position: "bottom-left", 
+          duration : 2000
+        })
+      },
+
+      download() {
+        this.$toasted.info('This receipt will be downloaded when this feature will be added!', {
+          theme: "primary", 
+          position: "bottom-left", 
+          duration : 2000
+        })
       }
     }
 
@@ -257,7 +300,7 @@
     }
 
     .tags {
-      margin-top: 20px;
+      margin: 20px 8px 0 8px;
     }
   }
 

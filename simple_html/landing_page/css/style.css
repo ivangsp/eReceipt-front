@@ -35,13 +35,16 @@
 
 .iconbgcolor{
   background-color: #009ED0;
-  margin-right: 10px;
-  opacity: 62;
+  margin-right: 20px;
+  opacity: .62;
 
 }
 
-.icon1{
-  height: 170px;
+.icon1 {
+  height: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 20px;
 }
 .slogan{
   opacity:0.45;
@@ -55,7 +58,7 @@
 .loginbtn{
   background-color: #009ED0;
   opacity: 0.8;
-  margin-top: 30px;
+  margin-top: 80px;
   height: 60px;
   width: 200px;
   font-weight: bold;
@@ -80,9 +83,22 @@ footer{
 .iconbgcolor
 .col{
   min-height: 200px;
-  opacity: 0.9;
+  opacity: 0.62;
 }
 
 .icon-row{
   min-height: 200px;
+}
+.main-container
+button{
+  margin-left: 0px;
+}
+.capitalcase{
+  text-transform: uppercase;
+  font-size: 16px;
+  align-content: center !important;
+  font-weight: bold;
+}
+.btnalign{
+  margin-left: 80px;
 }
