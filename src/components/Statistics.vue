@@ -1,9 +1,9 @@
 <template>
-  <v-layout row wrap class="mt-5 statistics" >
+  <v-layout row wrap class="statistics">
     <v-flex md2></v-flex>
-    <v-flex (md9|sm10) ml-5 pl-5>
+    <v-flex (md9|sm10)>
       <v-layout row wrap>
-        <v-flex md12 sm12 class="ml-3"  >
+        <v-flex md12 sm12 class="ml-3">
           <p >Total Expences per quarter</p>
           <v-divider ></v-divider>
         </v-flex>

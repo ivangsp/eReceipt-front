@@ -3,7 +3,9 @@
       <v-flex md6 style="margin-bottom: 50px;">
         <v-select
           class="company-select"
-          :items="['Own receipts', 'Company\'s receipts' ]"
+          v-model="receiptType"
+          :items="receiptTypeSelect"
+          return-object
           label="Select what?"
           single-line
           hide-details
@@ -11,7 +13,7 @@
       </v-flex>
       <v-flex md12>
         <v-expansion-panel class="receipts-panel" v-for="(rs, day) in receipts" :key='day'>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content :value="true">
             <div slot="header">{{day | moment('DD.MM.YYYY') }}</div>
             <v-card class="receipt-card">
               <v-layout row wrap>
@@ -47,7 +49,7 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex md6 class="cont-1 bord1 text-md-left">TOTAL:</v-flex>
-              <v-flex md6 class="cont-1 bord1 text-md-right">{{ dialogReceipt.total }}€</v-flex>
+              <v-flex md6 class="cont-1 bord1 text-md-right">{{ Math.round(dialogReceipt.total*100)/100 }}€</v-flex>
 
               <v-flex md6 class="cont-2 text-md-left">Receipt number:</v-flex>
               <v-flex md6 class="cont-2 text-md-right">34966</v-flex>
@@ -64,13 +66,13 @@
               <template v-for="product in dialogReceipt.items">
                 <v-flex md6 class="cont-3 text-md-left">{{ product.name }}</v-flex>
                 <v-flex md3 class="cont-3 text-md-right">{{ product.amount }}</v-flex>
-                <v-flex md3 class="cont-3 text-md-right">{{ product.price_per }}€</v-flex>
+                <v-flex md3 class="cont-3 text-md-right">{{ Math.round(product.price_per*100)/100 }}€</v-flex>
               </template>
 
               <v-flex md8 class="cont-3 bord2 text-md-left">Debit Card (SWEDBANK *****87593):</v-flex>
-              <v-flex md4 class="cont-3 bord2 text-md-right">{{ dialogReceipt.total }}€</v-flex>
+              <v-flex md4 class="cont-3 bord2 text-md-right">{{ Math.round(dialogReceipt.total*100)/100 }}€</v-flex>
               <v-flex md8 class="cont-1 text-md-left">TOTAL:</v-flex>
-              <v-flex md4 class="cont-1 text-md-right">{{ dialogReceipt.total }}€</v-flex>
+              <v-flex md4 class="cont-1 text-md-right">{{ Math.round(dialogReceipt.total*100)/100 }}€</v-flex>
             </v-layout>
           </v-container>
         </div>
@@ -114,6 +116,14 @@
       return {
         dialog: false,
         dialogReceipt: null,
+        receiptType: { text: 'Company\'s receipts', value: 'company' },
+        receiptTypeSelect: [{
+          text: 'Own receipts',
+          value: 'own'
+        }, {
+          text: 'Company\'s receipts',
+          value: 'company'
+        }],
         receiptTags: [],
         rawReceipts: []
       }
@@ -125,9 +135,6 @@
             const val = func(item)
             groups[val] = groups[val] || []
             groups[val].push(item)
-            groups[val].sort((a, b) => {
-              return new Date(b.date) - new Date(a.date)
-            })
 
             return groups
           }, {})
@@ -194,6 +201,8 @@
           this.rawReceipts = response.data.map((el) => {
             el.tags = el.tags.map((el) => (el.name))
             return el
+          }).sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
           })
         })
         .catch(error =>{

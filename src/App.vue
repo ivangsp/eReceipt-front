@@ -47,7 +47,7 @@
           <v-flex md12>
             <v-divider></v-divider>
             <v-list>
-              <v-list-group>
+              <v-list-group :value="true">
                 <v-list-tile slot="item">
                   <v-list-tile-action>
                     <v-icon>flag</v-icon>
