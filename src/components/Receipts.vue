@@ -20,7 +20,7 @@
                 <v-flex md2 v-for="receipt in rs" :key='receipt.id'>
                   <div class="receipt" @click="openReceipt(receipt)">
                     <div class="price">
-                      {{receipt.total}}€
+                      {{ Math.round(receipt.total*100)/100 }}€
                     </div>
                     <div class="store">
                       {{receipt.store}}
