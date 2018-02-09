@@ -41,7 +41,7 @@
               select-color='#f0e347'
               :month-labels='["January", "February", "March", "April", "May", "June", "July", "August",
                "September", "October", "November", "December"]'
-              :weekday-labels='["MO", "TU", "WE", "TH", "FR", "SA", "SU"]'
+              :weekday-labels='["SU", "MO", "TU", "WE", "TH", "FR", "SA"]'
             ></vc-date-picker>
           </v-flex>
           <v-flex md12>
@@ -136,8 +136,8 @@
       selectedSort: 'product',
       selectedTags: [],
       selectedDate: {
-        start: new Date(2018, 1, 2),
-        end: new Date(2018, 1, 8)
+        start: new Date(2018, 1, 3),
+        end: new Date(2018, 1, 9)
       },
       calendarStyles: {
         wrapper: {
