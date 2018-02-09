@@ -10,7 +10,7 @@
       </v-layout>
       <v-layout row wrap class="mt-3">
         <v-flex md12 sm12>
-          <img src="../assets/chart1ereceipt.svg" id="chart1" alt="chart1">
+          <img src="../assets/graph1.svg" class="chart1" alt="chart1">
         </v-flex>
       </v-layout>
       <v-spacing></v-spacing>
@@ -21,7 +21,7 @@
           <v-divider ></v-divider>
         </v-flex>
       </v-layout>
-      <v-layout row wrap class="mt-3">
+<!--       <v-layout row wrap class="mt-3">
         <v-flex md4 xsm12 >
           <img src="../assets/chart2ereceipt.svg" class="piechart" alt="chart1">
         </v-flex>
@@ -32,6 +32,11 @@
 
         <v-flex md4 xsm12>
           <img src="../assets/chart4ereceipt.svg" class="piechart" alt="chart1">
+        </v-flex>
+      </v-layout> -->
+      <v-layout row wrap class="mt-3">
+        <v-flex md12 sm12>
+          <img src="../assets/graph2.svg" class="chart1" alt="chart1">
         </v-flex>
       </v-layout>
 
@@ -79,7 +84,7 @@
 </script>
 
 <style>
-  #chart1{
+  .chart1{
     width: 100%;
     height: auto;
   }
