@@ -80,7 +80,7 @@
         fixed
         app
       >
-        <img id="logo" src="./assets/logo.svg" @click="$router.push('/')">
+        <router-link to="/"><img id="logo" src="./assets/logo.svg"></router-link>
         <v-toolbar-items id="menu">
           <v-btn class="menu-item" active-class="active-menu-item" depressed to="/" exact>Receipts</v-btn>
           <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
@@ -98,12 +98,12 @@
                 </v-list-tile-action>
                 <v-list-tile-title>Profile</v-list-tile-title>
               </v-list-tile>
-              <v-list-tile @click="logout">
+              <v-list-tile>
                 <v-list-tile-action>
                   <v-icon>power_settings_new</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-title>
-                  <a href="../simple_html/landing_page/index.html"> Logout</a></v-list-tile-title>
+                  <a href="https://ereceipt.website/"> Logout</a></v-list-tile-title>
               </v-list-tile>
             </v-list>
           </v-menu>

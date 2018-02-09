@@ -21,19 +21,68 @@
 
 #download-button{
 
-  background-color: #4891d9; 
+  background-color: #4891d9;
 }
 
-body {
-  background: url("../back_gr.jpg");
-  background-size: 120%;
-  background-repeat: no-repeat;
-}
 
 #yleoba{
 
-  color: rgba(146, 123, 58, 0.678); 
-  opacity: 90%;
+  color: rgba(146, 123, 58, 0.678);
+  opacity: 0.9;
   font-size: 50px;
   left: 10;
+}
+
+.iconbgcolor{
+  background-color: #009ED0;
+  margin-right: 10px;
+  opacity: 62;
+
+}
+
+.icon1{
+  height: 170px;
+}
+.slogan{
+  opacity:0.45;
+  color: #050505;
+  font-size: 55px;
+  text-transform: uppercase;
+  padding-left: 30px;
+  font-weight: 500;
+}
+
+.loginbtn{
+  background-color: #009ED0;
+  opacity: 0.8;
+  margin-top: 30px;
+  height: 60px;
+  width: 200px;
+  font-weight: bold;
+}
+.main-container{
+  background: url("../backgroundimg.jpg");
+  margin-bottom: 0px;
+  background-repeat: no-repeat;
+  background-size: 120%;
+
+}
+
+footer{
+  margin-top: 0px;
+}
+.row-icons{
+  padding-top: 180px;
+  color: white;
+
+}
+
+.iconbgcolor
+.col{
+  min-height: 200px;
+  opacity: 0.9;
+}
+
+.icon-row{
+  min-height: 200px;
 }

@@ -13,7 +13,6 @@
           <img src="../assets/chart1ereceipt.svg" id="chart1" alt="chart1">
         </v-flex>
       </v-layout>
-      <v-spacing></v-spacing>
 
       <v-layout row wrap class="mt-5">
         <v-flex md12 sm12 class="ml-3"  >
