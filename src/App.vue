@@ -11,17 +11,19 @@
         <v-layout row wrap>
           <v-flex md12>
             <v-text-field
+              v-model='searchField'
               prepend-icon="search"
               label="Search"
+              @keyup.enter="filterReceipts"
             ></v-text-field>
           </v-flex>
-          <v-flex md6>
+          <v-flex md5>
             <div class="inline-heading">Filter search by:</div>
           </v-flex>
-          <v-flex  md6>
+          <v-flex  md7>
             <v-radio-group v-model="selectedSort" row>
-              <v-radio label="Price" value="price"></v-radio>
-              <v-radio label="Place" value="place"></v-radio>
+              <v-radio label="Product" value="product"></v-radio>
+              <v-radio label="Store" value="store"></v-radio>
             </v-radio-group>
           </v-flex>
           <v-flex md12>
@@ -37,14 +39,15 @@
               :theme-styles='calendarStyles'
               drag-color='#f6f58b'
               select-color='#f0e347'
-              :month-labels='["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
-              :weekday-labels='["MO", "TU", "WE", "TH", "FR", "SA", "SU"]'
+              :month-labels='["January", "February", "March", "April", "May", "June", "July", "August",
+               "September", "October", "November", "December"]'
+              :weekday-labels='["SU", "MO", "TU", "WE", "TH", "FR", "SA"]'
             ></vc-date-picker>
           </v-flex>
           <v-flex md12>
             <v-divider></v-divider>
             <v-list>
-              <v-list-group>
+              <v-list-group :value="true">
                 <v-list-tile slot="item">
                   <v-list-tile-action>
                     <v-icon>flag</v-icon>
@@ -77,7 +80,7 @@
         fixed
         app
       >
-        <img id="logo" src="./assets/logo.svg" @click="$router.push('/')">
+        <router-link to="/"><img id="logo" src="./assets/logo.svg"></router-link>
         <v-toolbar-items id="menu">
           <v-btn class="menu-item" active-class="active-menu-item" depressed to="/" exact>Receipts</v-btn>
           <v-btn class="menu-item" active-class="active-menu-item" depressed to="/statistics" exact>Statistics</v-btn>
@@ -95,11 +98,12 @@
                 </v-list-tile-action>
                 <v-list-tile-title>Profile</v-list-tile-title>
               </v-list-tile>
-              <v-list-tile @click="logout">
+              <v-list-tile>
                 <v-list-tile-action>
                   <v-icon>power_settings_new</v-icon>
                 </v-list-tile-action>
-                <v-list-tile-title>Logout</v-list-tile-title>
+                <v-list-tile-title>
+                  <a href="https://ereceipt.website/"> Logout</a></v-list-tile-title>
               </v-list-tile>
             </v-list>
           </v-menu>
@@ -128,18 +132,13 @@
     },
     data: () => ({
       username: 'Ucha',
-      tags: [{
-        title: 'Gas'
-      }, {
-        title: 'Food'
-      }, {
-        title: 'Clothing'
-      }],
-      selectedSort: 'price',
+      tags: [],
+      searchField: '',
+      selectedSort: 'product',
       selectedTags: [],
       selectedDate: {
-        start: new Date(2018, 1, 2),
-        end: new Date(2018, 1, 8)
+        start: new Date(2018, 1, 3),
+        end: new Date(2018, 1, 9)
       },
       calendarStyles: {
         wrapper: {
@@ -152,6 +151,15 @@
         },
       },
     }),
+
+    watch: {
+      selectedTags: function() {
+        this.filterReceipts()
+      },
+      selectedDate: function() {
+        this.filterReceipts()
+      }
+    },
 
     mounted(){
       this.login()
@@ -177,7 +185,32 @@
       },
 
       logout(){
-        console.log("logedout....")
+        location.href = 'https://ereceipt.website'
+      },
+
+      filterReceipts () {
+        if (this.$route.path != "/") return;
+
+        var params = {client_id: -1}
+
+        if (this.searchField != '') {
+          if (this.selectedSort == 'product') {
+            params.item_search = this.searchField
+          } else if (this.selectedSort == 'store') {
+            params.store_search = this.searchField
+          }
+        }
+
+        if (this.selectedTags.length != 0) {
+          params.tags = JSON.stringify(this.selectedTags)
+        }
+
+        params.start_time = this.selectedDate.start.toISOString()
+        params.end_time = new Date(this.selectedDate.end)
+        params.end_time.setDate(params.end_time.getDate() + 1)
+        params.end_time = params.end_time.toISOString()
+
+        this.$route.matched[0].instances.default.getReceipts(params)
       }
     },
 

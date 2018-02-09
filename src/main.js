@@ -12,8 +12,12 @@ Vue.use(require('vue-moment'))
 import VCalendar from 'v-calendar';
 import ('../node_modules/v-calendar/lib/v-calendar.min.css')
 Vue.use(VCalendar, {
-  componentPrefix: 'vc'
+  componentPrefix: 'vc',
+  firstDayOfWeek: 2
 })
+
+import Toasted from 'vue-toasted'
+Vue.use(Toasted)
 
 Vue.config.productionTip = false
 

@@ -16,9 +16,10 @@
     "v-calendar": "^0.5.5",
     "vue": "^2.5.2",
     "vue-chartjs": "^3.1.1",
-    "vue-moment": "^3.2.0",
     "vue-input-tag": "^1.0.0",
+    "vue-moment": "^3.2.0",
     "vue-router": "^3.0.1",
+    "vue-toasted": "^1.1.24",
     "vuetify": "^0.17.7"
   },
   "devDependencies": {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1392.516px" height="809.355px" viewBox="0 0 1392.516 809.355" enable-background="new 0 0 1392.516 809.355"
+	 xml:space="preserve">
+<circle opacity="0.9" fill="#146591" cx="1015.949" cy="213.104" r="32.362"/>
+<text transform="matrix(1 0 0 1 1074.3521 228.7842)" fill="#6F6E6E" font-family="'Avenir-Light'" font-size="55">electricity</text>
+<circle opacity="0.9" fill="#1A81C6" cx="1015.949" cy="309.061" r="32.362"/>
+<g>
+	<text transform="matrix(1 0 0 1 1074.3521 324.7412)" fill="#6F6E6E" font-family="'Avenir-Light'" font-size="55">electronics</text>
+</g>
+<circle fill="#F4D80F" cx="1016.691" cy="403.53" r="32.362"/>
+<g>
+	<text transform="matrix(1 0 0 1 1076.5825 419.2109)" fill="#6F6E6E" font-family="'Avenir-Light'" font-size="55">paper</text>
+</g>
+<circle opacity="0.6" fill="#8E8E8E" cx="1016.691" cy="501.718" r="32.362"/>
+<g>
+	<text transform="matrix(1 0 0 1 1076.5825 517.3984)" fill="#6F6E6E" font-family="'Avenir-Light'" font-size="55">transport</text>
+</g>
+<circle opacity="0.4" fill="#B0B0B0" cx="1017.808" cy="598.419" r="32.362"/>
+<g>
+	<text transform="matrix(1 0 0 1 1077.6987 614.0996)"><tspan x="0" y="0" fill="#6F6E6E" font-family="'Avenir-Light'" font-size="55">server</tspan><tspan x="0" y="57" fill="#6F6E6E" font-family="'Avenir-Light'" font-size="55">maintenance</tspan></text>
+</g>
+<path opacity="0.9" fill="#1A81C6" d="M405.021,404.653L5.146,343.029C39.179,122.184,245.8-29.258,466.646,4.778
+	c85.467,13.169,155.758,47.851,218.214,107.663L405.021,404.653z"/>
+<path opacity="0.9" fill="#146591" d="M405.021,404.653L27.907,551.223C1.032,482.075-6.153,416.35,5.146,343.029L405.021,404.653z"
+	/>
+<path opacity="0.4" fill="#B0B0B0" d="M405.021,404.653L558.15,779.151c-206.83,84.572-443.059-14.539-527.628-221.368
+	c-0.676-1.655-1.968-4.895-2.615-6.561L405.021,404.653z"/>
+<path opacity="0.6" fill="#8E8E8E" d="M405.021,404.653L766.283,586.83c-45.276,89.783-115.06,154.266-208.133,192.321
+	L405.021,404.653z"/>
+<path fill="#F4D80F" d="M405.021,404.653L684.86,112.441c132.174,126.577,163.824,310.982,81.423,474.389L405.021,404.653z"/>
+<circle fill="#FFFFFF" cx="405.306" cy="403.488" r="193.535"/>
+</svg>
