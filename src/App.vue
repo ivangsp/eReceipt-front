@@ -102,8 +102,7 @@
                 <v-list-tile-action>
                   <v-icon>power_settings_new</v-icon>
                 </v-list-tile-action>
-                <v-list-tile-title>
-                  <a href="../simple_html/landing_page/index.html"> Logout</a></v-list-tile-title>
+                <v-list-tile-title>Logout</v-list-tile-title>
               </v-list-tile>
             </v-list>
           </v-menu>
@@ -185,7 +184,7 @@
       },
 
       logout(){
-        console.log("logedout....")
+        location.href = 'https://ereceipt.website'
       },
 
       filterReceipts () {
